@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  // Use the recommended Renovate preset for best-practices
+  "extends": [
+    "config:best-practices"
+  ],
+
+  "packageRules": [
+    {
+      // Automatically update any GitHub Actions packages through minor and patch upgrades
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest", "pinDigest"],
+      "matchManagers": [
+        "github-actions"
+      ]
+    }
+  ]
+}
