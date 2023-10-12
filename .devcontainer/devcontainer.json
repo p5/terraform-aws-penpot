@@ -1,0 +1,43 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig",
+        "hashicorp.terraform",
+        "hashicorp.hcl",
+        "github.copilot",
+        "github.copilot-chat"
+      ],
+      "settings": {
+        "[terraform]": {
+          "editor.defaultFormatter": "hashicorp.terraform"
+        },
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+        "files.associations": {
+          "*.hcl": "terraform"
+        },
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true
+      }
+    }
+  },
+  "mounts": [
+    {
+      "source": "${localEnv:HOME}${localEnv:USERPROFILE}/.aws",
+      "target": "/home/vscode/.aws",
+      "type": "bind"
+    }
+  ],
+  "name": "Terraform AWS PenPot",
+  "postStartCommand": "post-start",
+  "remoteEnv": {
+    "AWS_VAULT_BACKEND": "file",
+    "AWS_VAULT_FILE_DIR": "/home/vscode/.aws/vault"
+  },
+  "remoteUser": "vscode"
+}
