@@ -1,0 +1,27 @@
+name: Build DevContainer
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .devcontainer/**/*
+      - .github/workflows/devcontainer.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build DevContainer
+        uses: docker/build-push-action@v5
+        with:
+          context: .devcontainer
+          file: .devcontainer/Dockerfile
+          push: false
+          tags: ${{ github.repository }}:devcontainer
