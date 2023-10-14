@@ -52,10 +52,10 @@ resource "aws_security_group" "this" {
 }
 
 resource "aws_security_group_rule" "this" {
-  type              = "ingress"
-  from_port         = 5432
-  to_port           = 5432
-  protocol          = "tcp"
+  type                     = "ingress"
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.consumer.id
   security_group_id = aws_security_group.this.id
 }
