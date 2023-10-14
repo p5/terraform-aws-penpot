@@ -36,3 +36,9 @@ variable "vpc_id" {
   type        = string
   description = "The VPC ID to use"
 }
+
+variable "multi_az" {
+  type        = bool
+  description = "Whether to use multiple availability zones"
+  default     = true
+}

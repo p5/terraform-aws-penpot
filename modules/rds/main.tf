@@ -1,7 +1,8 @@
 resource "random_password" "this" {
-  length           = 32
-  special          = true
-  override_special = "_%@"
+  length  = 32
+  special = true
+  # Only printable ASCII characters besides '/', '@', '"', ' ' may be used.
+  override_special = "/@\" "
 }
 
 resource "aws_db_subnet_group" "this" {
@@ -20,6 +21,7 @@ resource "aws_db_instance" "this" {
   engine            = "postgres"
   engine_version    = var.engine_version
   instance_class    = var.instance_class
+  multi_az          = var.multi_az
 
   allocated_storage     = var.allocated_storage
   max_allocated_storage = var.max_allocated_storage
@@ -29,10 +31,12 @@ resource "aws_db_instance" "this" {
 
   username = "penpot"
   password = random_password.this.result
+
+  final_snapshot_identifier = "${var.name}-db-final-snapshot"
 }
 
 resource "aws_secretsmanager_secret" "this" {
-  name                    = "${aws_db_instance.this.id}-credentials"
+  name_prefix             = "${aws_db_instance.this.id}-credentials-"
   description             = "Master user credentials for ${aws_db_instance.this.id}"
   recovery_window_in_days = 7
 }

@@ -10,7 +10,9 @@ locals {
 module "penpot" {
   source = "../../."
 
-  name                = "complete-example"
-  vpc_id              = local.vpc_id
+  name   = "complete-example"
+  vpc_id = local.vpc_id
+
   database_subnet_ids = local.subnet_ids
+  database_multi_az   = false
 }

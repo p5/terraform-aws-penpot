@@ -1,46 +1,3 @@
-variable "name" {
-  type        = string
-  description = "The name of the PenPot instance"
-}
-
-variable "vpc_id" {
-  type        = string
-  description = "The VPC ID to use"
-}
-
-variable "database_subnet_ids" {
-  type        = list(string)
-  description = "The subnet IDs to use for the database"
-}
-
-variable "database_instance_class" {
-  type        = string
-  description = "The instance class to use for the database"
-  default     = "db.t4g.small"
-}
-
-variable "database_allocated_storage" {
-  type        = number
-  description = "The allocated storage in gigabytes for the database"
-  default     = 20
-}
-
-variable "database_max_allocated_storage" {
-  type        = number
-  description = "The maximum allocated storage in gigabytes for the database"
-  default     = 100
-}
-
-variable "database_engine_version" {
-  type        = string
-  description = "The engine version to use for the database"
-  default     = 15
-  validation {
-    error_message = "The engine version must not include minor versions"
-    condition     = can(regex("^\\d+$", var.database_engine_version))
-  }
-}
-
 # ECS Fargate Cluster
 module "ecs_cluster" {
   source = "./modules/ecs-cluster"
@@ -59,6 +16,7 @@ module "rds" {
   allocated_storage     = var.database_allocated_storage
   max_allocated_storage = var.database_max_allocated_storage
   engine_version        = var.database_engine_version
+  multi_az              = var.database_multi_az
 }
 
 
