@@ -22,12 +22,6 @@
 # }
 
 
-# SES
-# module "ses" {
-#   source = "./modules/ses"
-# }
-
-
 # Application Load Balancer
 # module "alb" {
 #   source = "./modules/alb"
