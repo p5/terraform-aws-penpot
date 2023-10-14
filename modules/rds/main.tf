@@ -57,7 +57,7 @@ resource "aws_security_group_rule" "this" {
   to_port                  = 5432
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.consumer.id
-  security_group_id = aws_security_group.this.id
+  security_group_id        = aws_security_group.this.id
 }
 
 resource "aws_security_group" "consumer" {
