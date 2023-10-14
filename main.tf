@@ -19,6 +19,7 @@ module "redis" {
 # S3 Bucket
 module "s3" {
   source = "./modules/s3"
+  name = var.bucket_name
 }
 
 
