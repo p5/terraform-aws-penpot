@@ -18,7 +18,7 @@ variable "max_allocated_storage" {
 variable "engine_version" {
   type        = string
   description = "The engine version to use"
-  default     = "15.4"
+  default     = 15
 }
 
 variable "instance_class" {

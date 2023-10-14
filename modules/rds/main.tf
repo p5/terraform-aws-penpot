@@ -11,7 +11,7 @@ resource "aws_db_subnet_group" "this" {
 
 resource "aws_db_parameter_group" "this" {
   name_prefix = "${var.name}-db-"
-  family      = "postgres${split(".", var.engine_version)[0]}"
+  family      = "postgres${var.engine_version}"
 }
 
 resource "aws_db_instance" "this" {

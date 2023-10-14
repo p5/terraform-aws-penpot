@@ -16,19 +16,29 @@ variable "database_subnet_ids" {
 variable "database_instance_class" {
   type        = string
   description = "The instance class to use for the database"
-  default     = null
+  default     = "db.t4g.small"
+}
+
+variable "database_allocated_storage" {
+  type        = number
+  description = "The allocated storage in gigabytes for the database"
+  default     = 20
 }
 
 variable "database_max_allocated_storage" {
   type        = number
   description = "The maximum allocated storage in gigabytes for the database"
-  default     = null
+  default     = 100
 }
 
 variable "database_engine_version" {
   type        = string
   description = "The engine version to use for the database"
-  default     = null
+  default     = 15
+  validation {
+    error_message = "The engine version must not include minor versions"
+    condition     = can(regex("^\\d+$", var.database_engine_version))
+  }
 }
 
 # ECS Fargate Cluster
@@ -46,6 +56,7 @@ module "rds" {
   subnet_ids = var.database_subnet_ids
 
   instance_class        = var.database_instance_class
+  allocated_storage     = var.database_allocated_storage
   max_allocated_storage = var.database_max_allocated_storage
   engine_version        = var.database_engine_version
 }
