@@ -12,7 +12,7 @@ module "rds" {
 
 # Elasticache Redis
 module "redis" {
-  source = "./modules/redis"
+  source = "./modules/elasticache"
 }
 
 
