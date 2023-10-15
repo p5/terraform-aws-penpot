@@ -43,4 +43,7 @@ module "penpot" {
   ecs_cluster_name = "complete-example"
 
   bucket_name = "complete-example-penpot-${random_string.bucket_suffix.result}"
+
+  elasticache_name       = "complete-example"
+  elasticache_subnet_ids = local.subnet_ids
 }
