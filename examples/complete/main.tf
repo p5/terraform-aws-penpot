@@ -20,6 +20,12 @@ data "aws_subnets" "private" {
   }
 }
 
+resource "random_string" "bucket_suffix" {
+  length    = 8
+  special   = false
+  min_lower = 8
+}
+
 locals {
   vpc_id     = data.aws_vpc.example.id
   subnet_ids = data.aws_subnets.private.ids
@@ -35,4 +41,6 @@ module "penpot" {
   database_multi_az   = false
 
   ecs_cluster_name = "complete-example"
+
+  bucket_name = "complete-example-penpot-${random_string.bucket_suffix.result}"
 }
