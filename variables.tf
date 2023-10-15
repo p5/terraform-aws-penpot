@@ -51,3 +51,8 @@ variable "database_multi_az" {
   description = "Whether to use multiple availability zones for the database"
   default     = true
 }
+
+variable "bucket_name" {
+  type        = string
+  description = "The name of the S3 bucket"
+}
