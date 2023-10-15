@@ -22,8 +22,13 @@ module "rds" {
 
 
 # Elasticache Redis
-module "redis" {
+module "elasticache" {
   source = "./modules/elasticache"
+
+  name       = var.elasticache_name
+  vpc_id     = var.vpc_id
+  subnet_ids = var.elasticache_subnet_ids
+  node_type  = var.elasticache_node_type
 }
 
 

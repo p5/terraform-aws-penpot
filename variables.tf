@@ -56,3 +56,19 @@ variable "bucket_name" {
   type        = string
   description = "The name of the S3 bucket"
 }
+
+variable "elasticache_name" {
+  type        = string
+  description = "The name of the Elasticache cluster"
+}
+
+variable "elasticache_subnet_ids" {
+  type        = list(string)
+  description = "The subnet IDs to be used"
+}
+
+variable "elasticache_node_type" {
+  type        = string
+  description = "The node type to be used"
+  default     = "cache.t4g.micro"
+}
