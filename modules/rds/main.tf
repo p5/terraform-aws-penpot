@@ -1,8 +1,7 @@
 resource "random_password" "this" {
-  length  = 32
-  special = true
-  # Only printable ASCII characters besides '/', '@', '"', ' ' may be used.
-  override_special = "/@\" "
+  length           = 128
+  special          = true
+  override_special = "!#$%^&*()-_=+[]{}<>:?"
 }
 
 resource "aws_db_subnet_group" "this" {

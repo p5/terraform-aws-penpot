@@ -1,6 +1,7 @@
 # ECS Fargate Cluster
 module "ecs_cluster" {
   source = "./modules/ecs-cluster"
+  name   = var.ecs_cluster_name
 }
 
 
