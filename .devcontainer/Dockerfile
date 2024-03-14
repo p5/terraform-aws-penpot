@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/vscode/devcontainers/base:1-ubuntu-22.04@sha256:0ec453075ac1fbf796d3256f1f336bf906961e8c36f7f5035251b5025164228f as awscli-builder
+FROM mcr.microsoft.com/vscode/devcontainers/base:1-ubuntu-22.04@sha256:08845a02c0472bb026f9cc4bb74bccaf2039945e7a9b41c4dbcce578c1830d40 as awscli-builder
 
 # Fetch and unpackage AWS CLI
 RUN apt-get update \
@@ -11,7 +11,7 @@ RUN apt-get update \
   && ./aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
 
-FROM mcr.microsoft.com/vscode/devcontainers/base:1-ubuntu-22.04@sha256:0ec453075ac1fbf796d3256f1f336bf906961e8c36f7f5035251b5025164228f as devcontainer
+FROM mcr.microsoft.com/vscode/devcontainers/base:1-ubuntu-22.04@sha256:08845a02c0472bb026f9cc4bb74bccaf2039945e7a9b41c4dbcce578c1830d40 as devcontainer
 
 # Update apt and install packages
 RUN apt-get update && apt-get -y upgrade \
